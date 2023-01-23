@@ -1,0 +1,60 @@
+
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <h1 style="font-size: 2rem; font-weight: bold" class="ion-text-center">
+        <span style="color: #3a7be0">Trade</span>
+        <span style="color: red">Management</span>
+      </h1>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content  [fullscreen]="true" style="height: 100%" class="ion-padding">
+    <ion-grid class="ion-justify-content-center ion-align-items-center" style="height: 100%" [fixed]="true">
+    <ion-row style="height: 100%"  class="ion-justify-content-center ion-align-items-center">
+      <ion-col *ngIf="currentPlatform ==='browser'" size="6">
+        <ion-img src="../../../../assets/images/9813.jpg"></ion-img>
+      </ion-col>
+      <ion-col style="height: 100%; display: flex" size="6" size-md="6" size-xs="12" class="ion-justify-content-center ion-align-items-center">
+        <ion-card mode="ios">
+          <ion-card-header>
+
+            <ion-card-title style="font-size: 1.8rem; font-weight: bold" class="ion-text-xl-center" color="primary">Connexion</ion-card-title>
+<!--            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>-->
+          </ion-card-header>
+
+          <ion-card-content>
+            <form [formGroup]="loginForm" >
+              <ion-item color="secondary" fill="outline">
+                <ion-label  position="floating">Login</ion-label>
+                <ion-input required="true" autocomplete="text" type="text" placeholder="Login"
+                            formControlName="login" [ngModel]="authRequest.login"
+                ></ion-input>
+                <ion-note *ngIf="isSubmited && loginForm.controls['login'].hasError('required')"
+                          color="danger" slot="error">Login  requis</ion-note>
+              </ion-item>
+              <ion-item class="ion-margin-top ion-margin-bottom" fill="outline">
+                <ion-label position="floating">Mot de passe</ion-label>
+                <ion-input required="true" [type]="hide ? 'password' : 'text'" formControlName="motDePasse"
+                           [ngModel]="authRequest.motDePasse" autocomplete="current-password" type="password" placeholder="Mot de passe"></ion-input>
+                <ion-note *ngIf="isSubmited && loginForm.controls['motDePasse'].hasError('required')"
+                          color="danger" slot="error">Mot de passe  requis</ion-note>
+                  <ion-icon (click)="hide= !hide" slot="end" name="{{hide ? 'eye-off-outline' : 'eye-outline'}}"></ion-icon>
+
+              </ion-item>
+
+              <ion-row class="ion-margin-top-20 ion-justify-content-center ">
+                <ion-button (click)="formSubmit()" expand="block">Connexion</ion-button>
+              </ion-row>
+            </form>
+
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>
+</ion-app>

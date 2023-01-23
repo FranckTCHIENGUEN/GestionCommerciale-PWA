@@ -1,0 +1,102 @@
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar *ngIf="platform==='browser'" color="primary">
+<!--      <ion-buttons slot="start">-->
+<!--        <ion-menu-toggle>-->
+<!--          <ion-button>-->
+<!--            <ion-icon slot="icon-only" name="menu"></ion-icon>-->
+<!--          </ion-button>-->
+<!--        </ion-menu-toggle>-->
+<!--      </ion-buttons>-->
+      <ion-buttons slot="start">
+        <h1 style="font-size: 2rem; font-weight: bold" size="2" class=" ion-text-center">
+          <span style="color: white">Trade</span>
+          <span style="color: white">Management</span>
+        </h1>
+      </ion-buttons>
+
+      <ion-title>
+        <ion-item color="primary">
+          <ion-searchbar inputmode="search" animated="true" search-icon="search-circle"
+                         placeholder="recherche">
+          </ion-searchbar>
+          <ion-button size="8" color="success">
+           <ion-icon name="search"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-title>
+      <ion-buttons>
+
+      </ion-buttons>
+      <ion-buttons slot="end">
+      <ion-chip>
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>Chip Avatar</ion-label>
+      </ion-chip>
+    </ion-buttons>
+
+    </ion-toolbar>
+    <ion-toolbar *ngIf="platform!=='browser'" color="primary">
+        <ion-searchbar inputmode="search" animated="true" search-icon="search-circle"
+                       placeholder="recherche"></ion-searchbar>
+      <ion-buttons slot="end">
+      <ion-chip>
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>Chip Avatar</ion-label>
+      </ion-chip>
+    </ion-buttons>
+
+    </ion-toolbar>
+
+  </ion-header>
+  <ion-content>
+    <ion-header>
+      <ion-toolbar>
+        <ion-segment  [scrollable]="true" [value]="menu[0].routerLink">
+            <ion-segment-button *ngFor="let data of menu"
+                                routerLink="{{data.routerLink}}" routerLinkActive="active-link"
+                                (click)="activeLink = data.routerLink && addNewItem(data.label)" [value]="data.routerLink">
+              <ion-icon name="{{data.icon}}"></ion-icon>
+              <ion-label>{{data.label}}</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <router-outlet id="main-content"></router-outlet>
+    </ion-content>
+
+<!--    <ion-split-pane when="sm" contentId="main-content">-->
+<!--      <ion-menu contentId="main-content">-->
+<!--        <ion-header>-->
+
+<!--          <ion-toolbar color="primary">-->
+<!--            <ion-title>Menu</ion-title>-->
+<!--          </ion-toolbar>-->
+<!--        </ion-header>-->
+
+<!--        <ion-content>-->
+<!--          <ion-list>-->
+<!--            <ion-list-header>-->
+<!--              Navigate-->
+<!--            </ion-list-header>-->
+<!--            <ion-menu-toggle [autoHide]="false">-->
+<!--              <ion-item button>-->
+<!--                <ion-icon slot="start" name='home'></ion-icon>-->
+<!--                <ion-label>-->
+<!--                  Home-->
+<!--                </ion-label>-->
+<!--              </ion-item>-->
+<!--            </ion-menu-toggle>-->
+<!--          </ion-list>-->
+<!--        </ion-content>-->
+<!--      </ion-menu>-->
+<!--        <ion-router-outlet id="main-content"></ion-router-outlet>-->
+<!--    </ion-split-pane>-->
+  </ion-content>
+
+</ion-app>
